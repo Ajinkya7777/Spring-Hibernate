@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	
+	 
+	 <bean id="msg" class="com.nt.ConstructorInjection.Message">
+	   <property name="message" value="God id great!"></property> <!-- setting property for Message class with value "GOd is great" -->
+	 </bean>
+	 
+	 <bean id="msg1" class="com.nt.ConstructorInjection.HelloWorldUsingConstructorInjection"> <!-- actual Constructor injection -->
+	<constructor-arg name="message" ref="msg"></constructor-arg>
+	 </bean>
+	
+	</beans>

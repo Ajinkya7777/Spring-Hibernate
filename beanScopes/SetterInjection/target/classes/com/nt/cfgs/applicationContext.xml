@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	
+	 
+	 <bean id="msg" class="NIT.com.nt.SetterInjection.Message">
+	   <property name="message" value="God id great!"></property> <!-- setting property for Message class with value "GOd is great" -->
+	 </bean>
+	 
+	 <bean id="msg1" class="NIT.com.nt.SetterInjection.HelloWorldUsingSetterInjection"> <!-- actual setter injection -->
+	 <property name="message" ref="msg"> </property>
+	 </bean>
+	
+	</beans>

@@ -1,0 +1,13 @@
+package com.luv2code.demo;
+
+public class Address {
+	private String street;
+	private String state;
+	private String zip;
+	private String country;
+	private String city;
+	
+	public Address() {
+		// TODO Auto-generated constructor stub
+	}
+}

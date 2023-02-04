@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName"
+			value="com.mysql.cj.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql:///ntspbms615db" />
+		<property name="username" value="root" />
+		<property name="password" value="test" />
+	</bean>
+
+	<bean id="impdao" class="com.nt.dao.EmployeeDAOimpl">
+		<constructor-arg name="ds" ref="dataSource"></constructor-arg>
+	</bean>
+
+
+	<bean id="impservice"
+		class="com.nt.service.EmployeeMgmtServiceImpl">
+		<constructor-arg name="dao" ref="impdao"></constructor-arg>
+
+	</bean>
+
+
+
+
+	<bean id="controller" class="com.nt.controller.MainController">
+		<constructor-arg name="service" ref="impservice"></constructor-arg>
+	</bean>
+
+</beans>

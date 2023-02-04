@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	 
+	<bean id="printer1" class="com.nt.scopes.PrinterSingelton" factory-method="getInstance" scope="singleton"/> 
+	<bean id="printer2" class="com.nt.scopes.PrinterSingelton" factory-method="getInstance" scope="singleton"/> 
+	
+<!--  output with factory method which restrict ioc container to create 2nd obj for different bean id 	
+ Inside the Private constructor -->
+<!-- Hashcodes : 487694075 487694075 -->
+<!-- p1==p2 true -->
+<!-- ===================================== -->
+<!-- Hashcodes : 487694075 487694075 -->
+<!-- p3==p4 true -->
+	
+	<!-- 
+	 the below code will create two separate object for printer even though it is singleton class and the scope of spring bean is having 
+	 scope of singleton type  because Spring IOC container uses reflection API's to access the private constructors so that two different 
+	  objects will be created for two different bean id's i.e for printer1 and printer2 but when we apply static factory method then it will 
+	  restrict the container to use reflection api's and the printer1 and printer2 are having the same obj references. 
+	 
+	<bean id="printer1" class="com.nt.scopes.PrinterSingelton" factory-method="getInstance" scope="singleton"/> 
+	<bean id="printer2" class="com.nt.scopes.PrinterSingelton" factory-method="getInstance" scope="singleton"/> 
+	
+	output:-
+	 
+	  Inside the Private constructor
+      Hashcodes : 355790875 355790875
+      p1==p2 true
+=====================================
+    Inside the Private constructor
+    Hashcodes : 2028017635 2028017635
+     p3==p4 true
+	 
+	
+	 -->
+	 
+	  
+	
+	
+	
+	
+	</beans>

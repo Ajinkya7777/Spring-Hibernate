@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<bean id="msg" class="NIT.com.nt.SetterInjection.Message" primary="true">
+		<property name="message" value="God is great!" ></property>
+	</bean>
+
+	<bean id="msg2" class="NIT.com.nt.SetterInjection.Message" >
+		<property name="message" value="Nothing is impossible!"></property>
+	</bean>
+	
+	<bean id="message" class="NIT.com.nt.SetterInjection.Message">
+		<property name="message" value=" WOW i've same name as that of property in java class ( Message message in targert class)!"></property>
+	</bean>
+
+
+	<bean id="msg1"
+		class="NIT.com.nt.SetterInjection.HelloWorldUsingSetterInjection"> <!-- actual Constructor injection done by Autowired -->
+	</bean>
+
+
+
+	<!-- Every annotation has bean post processors -->
+	<!-- autowiredbeanpostprocessors this bean processors searches for @autowired 
+		annotation in spring bean class and gets in target class -->
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor">
+
+
+	</bean>
+	<!-- activates the all annotation instead of configure them as like of autowired 
+		cfg -->
+	<context:annotation-config />
+
+</beans>

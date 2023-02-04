@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+	<bean id="msg" class="NIT.com.nt.SetterInjection.Message"
+		primary="true">
+		<property name="message" value="God is great!"></property>
+	</bean>  <!-- primary tag is used to avoid ambiguity problem both msg and msg2 are 
+		same type , it will ignore msg2 and inject msg bean id to target class by 
+		using autowired injection -->
+	<!-- below will give ambiguity problem bcz msg and msg2 are of same type 
+		and while injectiong it will give below erroe pringframework.beans.factory.NoUniqueBeanDefinitionException: 
+		No qualifying bean of type 'NIT.com.nt.SetterInjection.Message' available: 
+		expected single matching bean but found 2: msg,msg2 -->
+
+	<bean id="mes" class="NIT.com.nt.SetterInjection.Message">
+		<property name="message" value="How are you?"></property>
+	</bean>
+
+	<bean id="message" class="NIT.com.nt.SetterInjection.Message">
+		<property name="message" value="where are you?"></property> <!-- having same bean id as that of property in Message message -->
+	</bean>
+
+	<bean id="msg1"
+		class="NIT.com.nt.SetterInjection.HelloWorldUsingSetterInjection"> <!-- actual setter injection -->
+	</bean>
+
+
+
+	<!-- Every annotation has bean post processors -->
+	<!-- autowiredbeanpostprocessors this bean processors searches for @autowired 
+		annotation in spring bean class and gets in target class -->
+	<bean
+		class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor">
+
+
+</bean>
+		<!-- activates the all annotation instead of configure them as like of 
+			autowired cfg -->
+		<context:annotation-config />
+
+</beans>

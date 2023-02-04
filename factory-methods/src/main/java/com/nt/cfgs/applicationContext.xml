@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+
+	<!-- static factory method returning it's own class object -->
+	<bean id="c1" class="java.lang.Class" factory-method="forName">
+	<constructor-arg value="java.util.Date"></constructor-arg> <!--  this is not constructor injection , we are passing the values/arguments to the forName method class.forName("java.util.date")  -->
+	 </bean>
+
+	<!-- static factory method returning it's relevant/related class object -->
+	<bean id="cal" class="java.util.Calendar" factory-method="getInstance"/> <!-- calls Calendar.getInstance() -->
+	
+	<!--  static factory method returning unrelated object -->
+	<bean id="props" class="java.lang.System" factory-method="getProperties"/> <!-- calls System.getProperties() -->
+	
+	<!--  instance factory method returning it's own class object -->
+	<bean id="s1" class="java.lang.String">
+	<constructor-arg value="Hello"/> <!-- for constructor injection bcz passing value for String class constructor to create spring class object not a method -->
+	</bean>
+	
+	 <bean id="s2" factory-bean="s1" factory-method="concat">
+	 <constructor-arg value=",What's up?"/> <!-- calls s1.concat(s2) method -->
+	 </bean>
+	
+	 <!--  instance factory method returning unrelated object -->
+	 
+	<bean id="sb" class="java.lang.StringBuffer">   <!-- StringBuffer sb = new StringBuffer("Hello,How are You"); -->
+	<constructor-arg value="Hello,How are you?"/> <!-- for constructor injection (bcz passing value for StringBuffer class constructor to create springBuffer class object not a method) -->
+	</bean>
+	
+	 <bean id="sbf" factory-bean="sb" factory-method="substring"> <!-- calls sb.subString(0,5 ) method -->
+	 <constructor-arg value="0"/>
+	 <constructor-arg value="5"/>
+	 </bean>
+	 
+	 <bean id="msg" class="com.nt.scopes.Message">
+	<!--   <property name="message" value="God id great!"></property> -->
+	 </bean>
+	 
+	 <bean id="msg1" class="com.nt.scopes.HelloWorldUsingSetterInjection">
+	 <property name="message" ref="msg"> </property>
+	 </bean>
+	
+	</beans>
